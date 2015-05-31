@@ -13,7 +13,11 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+# Others
 .idea
+images/phantomjs_scripts/temp_phantomjs
+images/phantomjs_scripts/temp_html
 
 # Windows shortcuts
 *.lnk
