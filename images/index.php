@@ -78,7 +78,7 @@ function getResponseData($htmlFilePath) {
 
 	//Id's and class names in html
 	$mainContentIdName = 'rg_s';
-	$imageDivClassName = 'rg_di rg_el';
+	$imageDivClassName = 'rg_di rg_el ivg-i';
 	$suggestionsDivIdName = 'ifb';
 	$topStuffIdName = 'topstuff';
 
