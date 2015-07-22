@@ -27,6 +27,7 @@
 		getXML();
 	} else {
 		getJson();
+		//getImages();
 	}
 
 	/*
@@ -179,7 +180,17 @@
 			}
 		}
 		$response['responseData']['resultCount'] = $resultCount;
-		$response['responseStatus'] = 'Successful';
+		if($n==0) {
+			$response['responseStatus'] = 'Successful';
+		} else {
+			if($resultCount == 0) {
+				$response['responseStatus'] = 'No results available';
+			} else if ($resultCount == 1) {
+				$response['responseStatus'] = 'Only ' . $resultCount . ' result available';
+			} else {
+				$response['responseStatus'] = 'Only ' . $resultCount . ' results available';
+			}
+		}
 	}
 
 	/*
@@ -222,4 +233,14 @@
 		require_once("libraries/XMLParser.class.php");
 		$xml = XMLParser::encode($response , 'response');
 		echo $xml->asXML();
+	}
+
+	/*
+	 * Returns Image tags
+	 */
+	function getImages() {
+		global $response;
+		foreach($response['responseData']['results'] as $result) {
+			echo '<img src="' . $result['unescapedUrl'] . '" alt="' . $result['title'] . '" /></br>';
+		}
 	}
