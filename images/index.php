@@ -18,9 +18,17 @@
 		set_time_limit(0);
 		$shellCommand = '.\phantomjs_scripts\phantomjs "phantomjs_scripts\temp_phantomjs\\' . $fileName . '.js"';
 		$consoleOutput = shell_exec($shellCommand);
-		file_put_contents('phantomjs_scripts/temp_phantomjs/'. $fileName . '.txt', $consoleOutput);
+		if($consoleOutput == 'Connection successful
+Script successfully injected
+HTML file is created
+') {
+		//Set the file to cache table
+		}
 	} else {
-		$consoleOutput = file_get_contents('phantomjs_scripts/temp_phantomjs/' . $fileName . '.txt');
+		$consoleOutput = 'Connection successful
+Script successfully injected
+HTML file is created
+';
 	}
 
 	getResponse($consoleOutput, $htmlFilePath);
