@@ -15,6 +15,7 @@
 	);
 
 	if($phantom) {
+		set_time_limit(0);
 		$shellCommand = '.\phantomjs_scripts\phantomjs "phantomjs_scripts\temp_phantomjs\\' . $fileName . '.js"';
 		$consoleOutput = shell_exec($shellCommand);
 		file_put_contents('phantomjs_scripts/temp_phantomjs/'. $fileName . '.txt', $consoleOutput);
