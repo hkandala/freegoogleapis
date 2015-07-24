@@ -243,13 +243,3 @@ HTML file is created
 		$xml = XMLParser::encode($response , 'response');
 		echo $xml->asXML();
 	}
-
-	/*
-	 * Returns Image tags
-	 */
-	function getImages() {
-		global $response;
-		foreach($response['responseData']['results'] as $result) {
-			echo '<img src="' . $result['unescapedUrl'] . '" alt="' . $result['title'] . '" /></br>';
-		}
-	}
