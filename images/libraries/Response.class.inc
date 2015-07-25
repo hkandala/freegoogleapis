@@ -11,7 +11,7 @@
         public $responseStatus;
         public $error;
 
-        function __construct($responseType = 'web', $options = null, $searchUrl = null, $responseData = null, $responseStatus = null, $error = false) {
+        public function __construct($responseType = 'web', $options = null, $searchUrl = null, $responseData = null, $responseStatus = null, $error = false) {
             $this->responseType = $responseType;
             $this->options = $options;
             $this->searchUrl = $searchUrl;
