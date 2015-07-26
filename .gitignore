@@ -18,6 +18,7 @@ $RECYCLE.BIN/
 .idea
 images/phantomjs_scripts/temp_phantomjs
 images/phantomjs_scripts/html_cache
+images/test.php
 
 # Windows shortcuts
 *.lnk

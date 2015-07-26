@@ -10,6 +10,8 @@
         public $responseData;
         public $responseStatus;
         public $error;
+        private $suggestionsCount;
+        private $resultsCount;
 
         public function __construct($responseType = 'web', $options = null, $searchUrl = null, $responseData = null, $responseStatus = null, $error = false) {
             $this->responseType = $responseType;
@@ -18,10 +20,28 @@
             $this->responseData = $responseData;
             $this->responseStatus = $responseStatus;
             $this->error = $error;
+            $this->suggestionsCount = 0;
+            $this->resultsCount = 0;
         }
 
         public function __toString() {
             return $this->getJson();
+        }
+
+        public function getSuggestionsCount() {
+            return $this->suggestionsCount;
+        }
+
+        public function setSuggestionsCount($count) {
+            $this->suggestionsCount = $count;
+        }
+
+        public function getResultsCount() {
+            return $this->resultsCount;
+        }
+
+        public function setResultsCount($count) {
+            $this->resultsCount = $count;
         }
 
         public function initResponseData() {
@@ -73,6 +93,18 @@
             }
         }
 
+        public function addSuggestions($title, $url) {
+            if($this->responseType === 'image' && is_array($this->responseData)) {
+                $this->responseData['suggestions'][$this->suggestionsCount]['title'] = $title;
+                $this->responseData['suggestions'][$this->suggestionsCount]['url'] = $url;
+                $this->suggestionsCount++;
+
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function initResults() {
             if($this->responseType === 'image' && is_array($this->responseData)) {
                 $this->responseData['results'] = array(
@@ -98,6 +130,36 @@
                         'tbnId' => null
                     )
                 );
+
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function addResult($width, $height, $tbWidth, $tbHeight, $size, $extension, $fileName, $title, $content, $unescapedUrl, $url, $visibleUrl, $originalContextUrl, $tbUrl, $visuallySimiliarUrl, $moreSizesUrl, $searchByImageUrl, $imageId, $tbnId) {
+            if($this->responseType === 'image' && is_array($this->responseData)) {
+                $this->responseData['results'][$this->resultsCount]['width'] = $width;
+                $this->responseData['results'][$this->resultsCount]['height'] = $height;
+                $this->responseData['results'][$this->resultsCount]['tbWidth'] = $tbWidth;
+                $this->responseData['results'][$this->resultsCount]['tbHeight'] = $tbHeight;
+                $this->responseData['results'][$this->resultsCount]['size'] = $size;
+                $this->responseData['results'][$this->resultsCount]['extension'] = $extension;
+                $this->responseData['results'][$this->resultsCount]['fileName'] = $fileName;
+                $this->responseData['results'][$this->resultsCount]['title'] = $title;
+                $this->responseData['results'][$this->resultsCount]['content'] = $content;
+                $this->responseData['results'][$this->resultsCount]['unescapedUrl'] = $unescapedUrl;
+                $this->responseData['results'][$this->resultsCount]['url'] = $url;
+                $this->responseData['results'][$this->resultsCount]['visibleUrl'] = $visibleUrl;
+                $this->responseData['results'][$this->resultsCount]['originalContextUrl'] = $originalContextUrl;
+                $this->responseData['results'][$this->resultsCount]['tbUrl'] = $tbUrl;
+                $this->responseData['results'][$this->resultsCount]['visuallySimiliarUrl'] = $visuallySimiliarUrl;
+                $this->responseData['results'][$this->resultsCount]['moreSizesUrl'] = $moreSizesUrl;
+                $this->responseData['results'][$this->resultsCount]['searchByImageUrl'] = $searchByImageUrl;
+                $this->responseData['results'][$this->resultsCount]['imageId'] = $imageId;
+                $this->responseData['results'][$this->resultsCount]['tbnId'] = $tbnId;
+                $this->resultsCount++;
+                $this->responseData['resultCount'] = $this->resultsCount;
 
                 return true;
             } else {

@@ -36,7 +36,6 @@ HTML file is created
 		getXML();
 	} else {
 		getJson();
-		//getImages();
 	}
 
 	/*
