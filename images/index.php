@@ -96,6 +96,8 @@ HTML file is created
 		$imageDivClassName = 'rg_di rg_el ivg-i';
 		$suggestionsDivIdName = 'ifb';
 		$topStuffIdName = 'topstuff';
+		$originalSpellClassName = 'spell_orig';
+		$correctedSpellClassName = 'spell';
 
 		$html = file_get_contents($htmlFilePath);
 		$dom = new DOMDocument;
@@ -107,7 +109,7 @@ HTML file is created
 		$topStuffcount = 0;
 		if($topStuffLinks = $dom->getElementById($topStuffIdName)->getElementsbyTagName('a')) {
 			foreach ($topStuffLinks as $topStuffLink) {
-				if($topStuffLink->getAttribute('class') === 'spell_orig' && $topStuffLink->getAttribute('href') !== '') {
+				if($topStuffLink->getAttribute('class') === $originalSpellClassName && $topStuffLink->getAttribute('href') !== '') {
 					$link = 'https://www.google.com' . $topStuffLink->getAttribute('href');
 					$parsedUrl = parse_url($link);
 					parse_str($parsedUrl['query'], $query);
@@ -115,7 +117,7 @@ HTML file is created
 					$response['responseData']['spellCorrected'][$topStuffcount]['url'] = $link;
 					$topStuffcount++;
 
-				} else if ($topStuffLink->getAttribute('class') === 'spell' && $topStuffLink->getAttribute('href') !== '') {
+				} else if ($topStuffLink->getAttribute('class') === $correctedSpellClassName && $topStuffLink->getAttribute('href') !== '') {
 					$link = 'https://www.google.com' . $topStuffLink->getAttribute('href');
 					$parsedUrl = parse_url($link);
 					parse_str($parsedUrl['query'], $query);
