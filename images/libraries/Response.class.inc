@@ -1,6 +1,6 @@
 <?php
     /*
-     *  Class for managing the response data
+     * Class for managing the response data
      */
 
     class Response {
