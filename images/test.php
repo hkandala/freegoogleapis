@@ -26,7 +26,7 @@ HTML file is created
 
     if($contentOutputType === 'xml') {
         header('Content-Type: text/xml');
-        echo $response->getXML();
+        echo $response->getXML(get_object_vars($response));
     } else {
         header('Content-Type: application/json');
         echo $response;

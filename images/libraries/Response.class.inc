@@ -173,7 +173,6 @@
                 $this->initSpellCorrected();
                 $this->initSuggestions();
                 $this->initResults();
-                $this->initResults();
             }
         }
 
@@ -181,9 +180,9 @@
             return json_encode($this, JSON_UNESCAPED_SLASHES);
         }
 
-        public function getXML() {
+        public function getXML($array) {
             require_once("XMLParser.class.php");
-            $xml = XMLParser::encode((array)$this , 'response');
+            $xml = XMLParser::encode($array , 'response');
             return $xml->asXML();
         }
     }
