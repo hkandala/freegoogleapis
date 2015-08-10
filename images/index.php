@@ -244,3 +244,5 @@ HTML file is created
 		$xml = XMLParser::encode($response , 'response');
 		echo $xml->asXML();
 	}
+
+/*Test*/
