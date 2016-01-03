@@ -167,7 +167,6 @@ HTML file is created
 						'tbHeight' => $jsonObject->{'th'},
 						'size' => $jsonObject->{'os'},
 						'extension' => $jsonObject->{'ity'},
-						'fileName' => $jsonObject->{'fn'},
 						'title' => $jsonObject->{'pt'},
 						'content' => $jsonObject->{'s'},
 						'unescapedUrl' => urldecode($query['imgurl']),
@@ -175,11 +174,10 @@ HTML file is created
 						'visibleUrl' => 'www.' . $jsonObject->{'isu'},
 						'originalContextUrl' => $query['imgrefurl'],
 						'tbUrl' => $jsonObject->{'tu'},
-						'visuallySimiliarUrl' => 'https://www.google.com' . $jsonObject->{'si'},
-						'moreSizesUrl' => 'https://www.google.com' . $jsonObject->{'msu'},
 						'searchByImageUrl' => 'https://www.google.com' . $jsonObject->{'md'},
 						'imageId' => getImageId($jsonObject->{'tu'}),
-						'tbnId' => $jsonObject->{'id'}
+						'tbnId' => $jsonObject->{'id'},
+						'docid' => $jsonObject->{'rid'}
 					);
 
 					$n--;
